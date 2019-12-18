@@ -1,0 +1,11 @@
+.not-active{
+    background-color: rgb(250, 231, 226);
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.pointer:hover{
+    text-decoration: underline;
+}
