@@ -27,4 +27,4 @@ app.use((error, req, res, next) => {
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => { app.listen(5000) })
-    .catch(({ message }) => next(new HttpError(`Can not connect to db: ${message}`, 500)))
+    .catch(() => next(new HttpError(`Can not connect to db`, 500)))

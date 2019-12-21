@@ -1,20 +1,9 @@
 import * as types from './types'
-
-const initialState = {
-    employees: [],
-    modal: {
-        show: false,
-        mode: ''
-    },
-    error: {
-        show: false,
-        message: ''
-    }
-}
+import { initialState } from './initialState'
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.ADD_EMPLOYEES:
+        case types.FETCHED_EMPLOYEES:
             return {
                 ...state,
                 employees: [...action.employees]
@@ -22,9 +11,9 @@ export const reducer = (state = initialState, action) => {
         case types.DELETE_EMPLOYEE:
             return {
                 ...state,
-                employees: state.employees.filter(({ _id }) => _id !== action._id)
+                employees: state.employees.filter(({ id }) => id !== action.id)
             }
-        case types.SHOW_MODAL_EMPLOYEE_VIEW:
+        case types.EMPLOYEE_VIEW:
             return {
                 ...state,
                 modal: {
@@ -33,7 +22,7 @@ export const reducer = (state = initialState, action) => {
                     employeeId: action.employeeId
                 }
             }
-        case types.SHOW_MODAL_EMPLOYEE_EDIT:
+        case types.EMPLOYEE_EDIT:
             return {
                 ...state,
                 modal: {
@@ -49,9 +38,9 @@ export const reducer = (state = initialState, action) => {
                     show: false
                 }
             }
-        case types.SAVE_CHANGES_EMPLOYEE:
-            const { employee: { _id, name, active, department } } = action
-            const targetIndex = state.employees.findIndex(employee => employee._id === _id)
+        case types.PATCH_EMPLOYEE:
+            const { employee: { id, name, active, department } } = action
+            const targetIndex = state.employees.findIndex(employee => employee.id === id)
 
             state.employees[targetIndex] = Object.assign(
                 {}, 

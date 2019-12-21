@@ -2,12 +2,12 @@ import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { axiosInstance } from '../axios'
-import { showError } from '../store/actions'
+import { showError } from '../store/actionsError'
 
 export const useHttp = () => {
     const dispatch = useDispatch()
     const send = useCallback(
-        async ({ url, method, body = {} }) => axiosInstance({ url, method, data: body})
+        ({ url, method, body = {} }) => axiosInstance({ url, method, data: body })
             .catch(error => {
                 const message = error.response ? error.response.data.message : error.message 
 

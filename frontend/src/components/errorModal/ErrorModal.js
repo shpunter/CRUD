@@ -2,7 +2,7 @@ import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { hideError } from '../../store/actions'
+import { hideError } from '../../store/actionsError'
 
 const ErrorModal = () => {
     const dispatch = useDispatch()

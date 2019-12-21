@@ -3,22 +3,22 @@ import { useDispatch } from 'react-redux'
 
 import {
     deleteEmployee,
-    showModalEmployeeView,
-    showModalEmployeeEdit
-} from '../../../store/actions'
+    employeeView,
+    employeeEdit
+} from '../../../store/actionsEmployee'
 import { useHttp } from '../../../hook/http-hook'
 import './employee.css'
 
-const EmployeeTableBody = ({ employee: { _id, name, active, department } }) => {
+const EmployeeTableBody = ({ employee: { id, name, active, department } }) => {
     const dispatch = useDispatch()
     const [ removeEmployee ] = useHttp()
     const cssClass = active ? '' : 'not-active'
     const onClickDelete = () => {
-        removeEmployee({ url: '/employees', method: 'DELETE', body: { _id }})
-            .then(() => dispatch(deleteEmployee(_id)))
+        removeEmployee({ url: '/employees', method: 'DELETE', body: { id }})
+            .then(() => dispatch(deleteEmployee(id)))
     }
-    const onClickView = () => dispatch(showModalEmployeeView(_id))
-    const onClickEdit = () => dispatch(showModalEmployeeEdit(_id))
+    const onClickView = () => dispatch(employeeView(id))
+    const onClickEdit = () => dispatch(employeeEdit(id))
 
     return (
         <tr className={ cssClass }>

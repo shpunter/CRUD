@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 import Input from '../../../UI/Input'
 import Check from '../../../UI/Check'
 import Select from '../../../UI/Select'
-import { saveChangesEmployee } from '../../../../store/actions'
+import { patchEmployee } from '../../../../store/actionsEmployee'
 import { useHttp } from '../../../../hook/http-hook'
 
 const OPTIONS = ['HR', 'Junior Developer', 'Junior QA']
@@ -16,20 +16,20 @@ const ModalEmployeeEdit = ({ showModal, onHide, employeeId }) => {
     const [ updateChanges ] = useHttp()
     const [ employeeName, employeeActive, employeeDepartment ] = [ useRef(), useRef(), useRef() ]
     const { name, active, department } = useSelector(
-        ({ employees }) => employees.find(({ _id }) => _id === employeeId),
+        ({ employees }) => employees.find(({ id }) => id === employeeId),
         shallowEqual
     )
 
     const onSave = () => {
         const draftEmployee = { 
-            _id: employeeId,
+            id: employeeId,
             name: employeeName.current.value,
             active: employeeActive.current.checked,
             department: employeeDepartment.current.value
         }
 
         updateChanges({ url: '/employees', method: 'PATCH', body: draftEmployee })
-            .then(() => dispatch(saveChangesEmployee(draftEmployee)))
+            .then(() => dispatch(patchEmployee(draftEmployee)))
             .then(() => onHide())
     }
 

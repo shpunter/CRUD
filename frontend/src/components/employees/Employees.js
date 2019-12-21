@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Table from 'react-bootstrap/Table'
 
-import { addEmployees } from '../../store/actions'
+import { fetchedEmployees } from '../../store/actionsEmployee'
 import EmployeeTableBody from './employee/EmployeeTableBody'
 import EmployeeTableHead from './employee/EmployeeTableHead'
 import { useHttp } from '../../hook/http-hook'
@@ -14,7 +14,7 @@ const Employees = () => {
 
     useEffect(() => {
         getEmployees({ url: '/employees', method: 'GET' })
-            .then(({ data }) => dispatch(addEmployees(data)))
+            .then(({ data }) => dispatch(fetchedEmployees(data)))
     }, [dispatch, getEmployees])
 
     return (
@@ -22,7 +22,7 @@ const Employees = () => {
             <EmployeeTableHead />
             <tbody>
                 {employees.map(employee => (
-                    <EmployeeTableBody key={employee._id} employee={employee} />
+                    <EmployeeTableBody key={ employee.id } employee={ employee } />
                 ))}
             </tbody>
         </Table>
