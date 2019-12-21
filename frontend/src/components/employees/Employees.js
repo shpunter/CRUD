@@ -22,7 +22,7 @@ const Employees = () => {
             <EmployeeTableHead />
             <tbody>
                 {employees.map(employee => (
-                    <EmployeeTableBody key={employee.id} employee={employee} />
+                    <EmployeeTableBody key={employee._id} employee={employee} />
                 ))}
             </tbody>
         </Table>

@@ -22,7 +22,7 @@ export const reducer = (state = initialState, action) => {
         case types.DELETE_EMPLOYEE:
             return {
                 ...state,
-                employees: state.employees.filter(({ id }) => id !== action.id)
+                employees: state.employees.filter(({ _id }) => _id !== action._id)
             }
         case types.SHOW_MODAL_EMPLOYEE_VIEW:
             return {
@@ -50,8 +50,8 @@ export const reducer = (state = initialState, action) => {
                 }
             }
         case types.SAVE_CHANGES_EMPLOYEE:
-            const { employee: { id, name, active, department } } = action
-            const targetIndex = state.employees.findIndex(employee => employee.id === id)
+            const { employee: { _id, name, active, department } } = action
+            const targetIndex = state.employees.findIndex(employee => employee._id === _id)
 
             state.employees[targetIndex] = Object.assign(
                 {}, 

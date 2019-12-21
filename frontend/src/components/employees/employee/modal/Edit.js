@@ -16,13 +16,13 @@ const ModalEmployeeEdit = ({ showModal, onHide, employeeId }) => {
     const [ updateChanges ] = useHttp()
     const [ employeeName, employeeActive, employeeDepartment ] = [ useRef(), useRef(), useRef() ]
     const { name, active, department } = useSelector(
-        ({ employees }) => employees.find(({ id }) => id === employeeId),
+        ({ employees }) => employees.find(({ _id }) => _id === employeeId),
         shallowEqual
     )
 
     const onSave = () => {
         const draftEmployee = { 
-            id: employeeId,
+            _id: employeeId,
             name: employeeName.current.value,
             active: employeeActive.current.checked,
             department: employeeDepartment.current.value

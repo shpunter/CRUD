@@ -5,23 +5,23 @@ export const addEmployees = employees => ({
     employees
 })
 
-export const deleteEmployee = id => ({
+export const deleteEmployee = _id => ({
     type: types.DELETE_EMPLOYEE,
-    id
+    _id
 })
 
 export const hideModal = () => ({
     type: types.HIDE_MODAL
 })
 
-export const showModalEmployeeView = id => ({
+export const showModalEmployeeView = _id => ({
     type: types.SHOW_MODAL_EMPLOYEE_VIEW,
-    employeeId: id
+    employeeId: _id
 })
 
-export const showModalEmployeeEdit = id => ({
+export const showModalEmployeeEdit = _id => ({
     type: types.SHOW_MODAL_EMPLOYEE_EDIT,
-    employeeId: id
+    employeeId: _id
 })
 
 export const saveChangesEmployee = employee =>( {

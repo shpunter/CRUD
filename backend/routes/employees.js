@@ -1,15 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const { 
-    putEmployee, 
     deleteEmployee, 
     updateEmployee, 
-    getEmployees 
+    getEmployees,
+    createEmployee
 } = require('../controllers/employee-controller')
 
 router.get('/', getEmployees)
 router.delete('/', deleteEmployee)
 router.patch('/', updateEmployee)
-router.put('/', putEmployee)
+router.post('/', createEmployee)
 
 module.exports = router

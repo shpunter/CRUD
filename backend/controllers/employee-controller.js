@@ -1,64 +1,51 @@
-const uuid = require('uuid/v4')
 const HttpError = require('../models/HttpError')
+const Employee = require('../models/employee')
+const mongoose = require('mongoose')
 
-const createUser = () => {
-    return { 
-        id: uuid(), 
-        name: 'Name Surname', 
-        active: ( () => Math.random() < 0.7 )(), // chance 70% that will be value: true
-        department: ( () => {
-            let title = ''
-            const rand = Math.random()
+const url = 'mongodb+srv://user-testator:3udFupKVGN8fAX02@cluster-crud-6obm8.mongodb.net/crud?retryWrites=true&w=majority'
 
-            if (rand < 0.1) title = 'HR'
-            else if (rand < 0.3) title = 'Junior QA'
-            else if (rand < 0.5) title = 'Middle QA'
-            else if (rand < 0.53) title = 'Senior QA'
-            else if (rand < 0.8) title = 'Junior Developer' 
-            else if (rand < 0.97) title = 'Middle Developer' 
-            else if (rand <= 1) title = 'Senior Developer'
-            
-            return title
-        })()
-    }
-}
-
-const employees = []
-for (let i = 0; i < 30; i++){
-    employees.push(createUser())
-}
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+    .catch(({ message }) => next(new HttpError(`Can not connect to db: ${message}`, 500)))
 
 const deleteEmployee = (req, res, next) => {
-    const { body: { id } } = req;
-    const index = employees.findIndex(employeeTarget => employeeTarget.id === id);
-    if (index < 0) return next(new HttpError('No such employee', 404))
+    const { body: { _id } } = req;
 
-    employees.splice(index, 1);
-
-    res.status(202).send({ message: "Employee removed successfully" });
+    Employee.findOneAndDelete(_id).deleteOne().exec()
+        .then(() => {
+            res.status(202).send({ message: "Employee removed successfully" })
+        })
+        .catch(({ message }) => next(new HttpError(`No such employee: ${message}`, 500)))
 };
 
-const getEmployees = (req, res, next) => {
-     res.status(200).json(employees);
+const getEmployees = async (req, res, next) => {
+    Employee.find().exec()
+        .then(employees => res.send(employees))
+        .catch(({ message }) => next(new HttpError(`Can not get employees: ${message}` , 500)))
 };
 
 const updateEmployee = (req, res, next) => {
     const {
-        body: { id, name, active, department }
+        body: { _id, name, active, department }
     } = req;
-    const index = employees.findIndex(employeeTarget => employeeTarget.id === id);
-    if (index < 0) return next(new HttpError('No such employee', 404))
 
-    Object.assign(employees[index], { name, active, department });
-
-    res.status(202).send({ message: 'Employee updated' });
+    Employee.findOneAndUpdate({ _id }, { _id, name, active, department }).exec()
+        .then(() => res.status(202).send({ message: 'Employee updated' }))
+        .catch(({ message }) => next(new HttpError(message, 500)))
 };
 
-const putEmployee = (req, res, next) => {
-    
+const createEmployee = async (req, res, next) => {
+    const newEmployee = {
+        name: 'Some name',
+        active: true,
+        department: 'HR'
+    }
+
+    new Employee(newEmployee).save()
+        .then(() => res.send({ message: 'New Employee added successfully'}))
+        .catch(({ message }) => next(new HttpError(`Can not create employee: ${message}`, 500)))
 }
 
 exports.deleteEmployee = deleteEmployee;
 exports.getEmployees = getEmployees;
 exports.updateEmployee = updateEmployee;
-exports.putEmployee = putEmployee;
+exports.createEmployee = createEmployee

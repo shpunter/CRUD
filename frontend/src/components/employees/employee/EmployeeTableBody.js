@@ -9,16 +9,16 @@ import {
 import { useHttp } from '../../../hook/http-hook'
 import './employee.css'
 
-const EmployeeTableBody = ({ employee: { id, name, active, department } }) => {
+const EmployeeTableBody = ({ employee: { _id, name, active, department } }) => {
     const dispatch = useDispatch()
     const [ removeEmployee ] = useHttp()
     const cssClass = active ? '' : 'not-active'
     const onClickDelete = () => {
-        removeEmployee({ url: '/employees', method: 'DELETE', body: { id }})
-            .then(() => dispatch(deleteEmployee(id)))
+        removeEmployee({ url: '/employees', method: 'DELETE', body: { _id }})
+            .then(() => dispatch(deleteEmployee(_id)))
     }
-    const onClickView = () => dispatch(showModalEmployeeView(id))
-    const onClickEdit = () => dispatch(showModalEmployeeEdit(id))
+    const onClickView = () => dispatch(showModalEmployeeView(_id))
+    const onClickEdit = () => dispatch(showModalEmployeeEdit(_id))
 
     return (
         <tr className={ cssClass }>
