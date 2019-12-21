@@ -1,9 +1,9 @@
 add creation of employee
 refactor modal FE
-separate reducer
 add pagination
 add search
 add sorting
 add auth and roles
 unit tests
-
+refactor mongoose calls (deprecated)
+refactor file structure

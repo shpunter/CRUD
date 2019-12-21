@@ -1,11 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import {
-    deleteEmployee,
-    employeeView,
-    employeeEdit
-} from '../../../store/actionsEmployee'
+import { deleteEmployee } from '../../../store/actions/actionsEmployee'
+import { employeeView, employeeEdit } from '../../../store/actions/actionsModal'
 import { useHttp } from '../../../hook/http-hook'
 import './employee.css'
 

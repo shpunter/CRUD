@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { hideModal } from '../../store/actionsModal'
+import { hideModal } from '../../store/actions/actionsModal'
 import View from '../employees/employee/modal/View'
 import Edit from '../employees/employee/modal/Edit'
 

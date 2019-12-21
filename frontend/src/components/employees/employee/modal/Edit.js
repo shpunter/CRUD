@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 import Input from '../../../UI/Input'
 import Check from '../../../UI/Check'
 import Select from '../../../UI/Select'
-import { patchEmployee } from '../../../../store/actionsEmployee'
+import { patchEmployee } from '../../../../store/actions/actionsEmployee'
 import { useHttp } from '../../../../hook/http-hook'
 
 const OPTIONS = ['HR', 'Junior Developer', 'Junior QA']

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Table from 'react-bootstrap/Table'
 
-import { fetchedEmployees } from '../../store/actionsEmployee'
+import { fetchedEmployees } from '../../store/actions/actionsEmployee'
 import EmployeeTableBody from './employee/EmployeeTableBody'
 import EmployeeTableHead from './employee/EmployeeTableHead'
 import { useHttp } from '../../hook/http-hook'

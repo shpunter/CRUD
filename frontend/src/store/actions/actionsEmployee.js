@@ -1,4 +1,4 @@
-import * as types from "./types"
+import * as types from "../types"
 
 export const fetchedEmployees = employees => ({
     type: types.FETCHED_EMPLOYEES,
@@ -17,12 +17,4 @@ export const patchEmployee = employee =>( {
     type: types.PATCH_EMPLOYEE,
     employee
 })
-export const employeeView = id => ({
-    type: types.EMPLOYEE_VIEW,
-    employeeId: id
-})
 
-export const employeeEdit = id => ({
-    type: types.EMPLOYEE_EDIT,
-    employeeId: id
-})
