@@ -1,20 +1,17 @@
-import * as types from "../types"
+import { PATCH_EMPLOYEE, FETCHED_EMPLOYEES, DELETE_EMPLOYEE } from "../types"
 
 export const fetchedEmployees = employees => ({
-    type: types.FETCHED_EMPLOYEES,
-    employees: employees.map(employee => {
-        employee.id = employee._id
-        return employee
-    })
+    type: FETCHED_EMPLOYEES,
+    employees: employees.map(({ _id: id, ...rest }) => ({ id, ...rest }))
 })
 
 export const deleteEmployee = id => ({
-    type: types.DELETE_EMPLOYEE,
+    type: DELETE_EMPLOYEE,
     id
 })
 
 export const patchEmployee = employee =>( {
-    type: types.PATCH_EMPLOYEE,
+    type: PATCH_EMPLOYEE,
     employee
 })
 
