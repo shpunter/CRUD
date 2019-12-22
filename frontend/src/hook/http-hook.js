@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { axiosInstance } from '../axios'
-import { showError } from '../store/actions/actionsError'
+import { showError } from '../store/actions/error'
 
 export const useHttp = () => {
     const dispatch = useDispatch()

@@ -16,9 +16,7 @@ const getEmployees = (req, res, next) => {
 };
 
 const updateEmployee = (req, res, next) => {
-    const {
-        body: { id, name, active, department }
-    } = req;
+    const { body: { id, name, active, department }} = req;
 
     Employee.findByIdAndUpdate(id , { name, active, department })
         .then(() => res.status(202).send({ message: 'Employee updated' }))
@@ -26,14 +24,10 @@ const updateEmployee = (req, res, next) => {
 };
 
 const createEmployee = (req, res, next) => {
-    const newEmployee = {
-        name: 'Some name',
-        active: true,
-        department: 'HR'
-    }
+    const { body: { name, active, department }} = req
 
-    new Employee(newEmployee).save()
-        .then(() => res.send({ message: 'New Employee added successfully'}))
+    new Employee({ name, active, department }).save()
+        .then(createdEmployee => res.send(createdEmployee))
         .catch(() => next(new HttpError('Can not create employee', 500)))
 }
 

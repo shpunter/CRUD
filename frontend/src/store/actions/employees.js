@@ -1,4 +1,4 @@
-import { PATCH_EMPLOYEE, FETCHED_EMPLOYEES, DELETE_EMPLOYEE } from "../types"
+import { CREATE_EMPLOYEE, PATCH_EMPLOYEE, FETCHED_EMPLOYEES, DELETE_EMPLOYEE } from "../types"
 
 export const fetchedEmployees = employees => ({
     type: FETCHED_EMPLOYEES,
@@ -10,8 +10,13 @@ export const deleteEmployee = id => ({
     id
 })
 
-export const patchEmployee = employee =>( {
+export const patchEmployee = employee =>({
     type: PATCH_EMPLOYEE,
     employee
+})
+
+export const createEmployee = ({ _id: id, ...rest }) => ({
+    type: CREATE_EMPLOYEE,
+    employee: { id, ...rest }
 })
 

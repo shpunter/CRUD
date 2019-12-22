@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 
-const Check = React.forwardRef(({ value }, ref) => {
+const Check = React.forwardRef(({ value = true }, ref) => {
     const [checkValue, setCheckValue] = useState(value)
     
     const onChange = event => setCheckValue(event.target.checked)

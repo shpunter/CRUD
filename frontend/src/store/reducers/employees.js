@@ -1,4 +1,4 @@
-import { FETCHED_EMPLOYEES, PATCH_EMPLOYEE, DELETE_EMPLOYEE } from '../types'
+import { CREATE_EMPLOYEE, FETCHED_EMPLOYEES, PATCH_EMPLOYEE, DELETE_EMPLOYEE } from '../types'
 
 const init = []
 
@@ -16,13 +16,16 @@ export const employees = (state = init, action) => {
             )
 
             return [...employees]
-            
+
         case DELETE_EMPLOYEE:
             return state.filter(({ id }) => id !== action.id)
 
         case FETCHED_EMPLOYEES:
             return [...action.employees]
 
+        case CREATE_EMPLOYEE: 
+        debugger;
+            return [...state, action.employee]
         default: 
             return state
     }

@@ -1,4 +1,3 @@
-add creation of employee
 refactor modal FE
 add pagination
 add search
@@ -7,3 +6,5 @@ add auth and roles
 unit tests
 refactor mongoose calls (deprecated)
 refactor file structure
+add validation BE
+refactor usage of bootstrap elements
