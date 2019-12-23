@@ -1,19 +1,19 @@
-import { EMPLOYEE_CREATE, HIDE_MODAL, EMPLOYEE_VIEW, EMPLOYEE_EDIT } from '../types'
+import { MODAL_EMPLOYEE_CREATE, MODAL_HIDE, MODAL_EMPLOYEE_VIEW, MODAL_EMPLOYEE_EDIT } from '../types'
 
 const init = { show: false, mode: '' }
 
 export const modal = (state = init, { type, employeeId, show, title, mode }) => {
     switch (type) {
-        case EMPLOYEE_VIEW:
+        case MODAL_EMPLOYEE_VIEW:
             return { show, title, mode, employeeId }
 
-        case EMPLOYEE_EDIT:
+        case MODAL_EMPLOYEE_EDIT:
             return { show, title, mode, employeeId }
 
-        case HIDE_MODAL:
+        case MODAL_HIDE:
             return { show }
 
-        case EMPLOYEE_CREATE: 
+        case MODAL_EMPLOYEE_CREATE: 
             return { show, title, mode }
         default: 
             return state

@@ -1,12 +1,12 @@
-import { EMPLOYEE_CREATE, HIDE_MODAL, EMPLOYEE_VIEW, EMPLOYEE_EDIT } from '../types'
+import { MODAL_EMPLOYEE_CREATE, MODAL_HIDE, MODAL_EMPLOYEE_VIEW, MODAL_EMPLOYEE_EDIT } from '../types'
 
 export const hideModal = () => ({
-    type: HIDE_MODAL,
+    type: MODAL_HIDE,
     show: false
 })
 
 export const employeeView = id => ({
-    type: EMPLOYEE_VIEW,
+    type: MODAL_EMPLOYEE_VIEW,
     employeeId: id,
     title: 'View Employee',
     mode: 'view',
@@ -14,7 +14,7 @@ export const employeeView = id => ({
 })
 
 export const employeeEdit = id => ({
-    type: EMPLOYEE_EDIT,
+    type: MODAL_EMPLOYEE_EDIT,
     employeeId: id,
     title: 'Edit Employee',
     mode: 'edit',
@@ -22,7 +22,7 @@ export const employeeEdit = id => ({
 })
 
 export const employeeCreate = () => ({
-    type: EMPLOYEE_CREATE,
+    type: MODAL_EMPLOYEE_CREATE,
     title: 'Create Employee',
     mode: 'create',
     show: true

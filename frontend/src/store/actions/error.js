@@ -1,13 +1,13 @@
-import { SHOW_ERROR, HIDE_ERROR } from "../types"
+import { ERROR_SHOW, ERROR_HIDE } from "../types"
 
 export const showError = message => ({
-    type: SHOW_ERROR,
+    type: ERROR_SHOW,
     message,
     show: true
 })
 
 export const hideError = () => ({
-    type: HIDE_ERROR,
+    type: ERROR_HIDE,
     show: false,
     message: ''
 })

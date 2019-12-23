@@ -7,5 +7,5 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.response.use(
     response => response, 
-    (response) => Promise.reject(response)
+    response => Promise.reject(response)
 )
