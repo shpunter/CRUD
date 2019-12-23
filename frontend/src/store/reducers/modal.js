@@ -2,32 +2,20 @@ import { EMPLOYEE_CREATE, HIDE_MODAL, EMPLOYEE_VIEW, EMPLOYEE_EDIT } from '../ty
 
 const init = { show: false, mode: '' }
 
-export const modal = (state = init, { employeeId, type }) => {
+export const modal = (state = init, action) => {
+    const { type, employeeId, show, title, mode } = action
     switch (type) {
         case EMPLOYEE_VIEW:
-            return {
-                show: true,
-                mode: 'view',
-                employeeId
-            }
+            return { show, title, mode, employeeId }
 
         case EMPLOYEE_EDIT:
-            return {
-                show: true,
-                mode: 'edit',
-                employeeId
-            }
+            return { show, title, mode, employeeId }
 
         case HIDE_MODAL:
-            return {
-                show: false
-            }
+            return { show }
 
         case EMPLOYEE_CREATE: 
-            return {
-                show: true,
-                mode: 'create'
-            }
+            return { show, title, mode }
         default: 
             return state
     }

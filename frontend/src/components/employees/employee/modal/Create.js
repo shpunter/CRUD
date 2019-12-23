@@ -11,7 +11,7 @@ import { useHttp } from '../../../../hook/http-hook'
 
 const OPTIONS = ['HR', 'Junior Developer', 'Junior QA']
 
-const ModalEmployeeCreate = ({ showModal, onHide }) => { 
+const ModalEmployeeCreate = ({ title, show, onHide }) => { 
     const dispatch = useDispatch()
     const [ postNewEmployee ] = useHttp()
     const [ employeeName, employeeActive, employeeDepartment ] = [ useRef(), useRef(), useRef() ]
@@ -29,9 +29,9 @@ const ModalEmployeeCreate = ({ showModal, onHide }) => {
     }
 
     return (
-        <Modal size='lg' show={ showModal } onHide={ onHide }>
+        <Modal size='lg' show={ show } onHide={ onHide }>
         <Modal.Header closeButton>
-            <Modal.Title>Create Employee</Modal.Title>
+            <Modal.Title>{ title }</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
