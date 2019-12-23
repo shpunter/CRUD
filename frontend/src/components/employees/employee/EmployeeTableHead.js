@@ -6,9 +6,7 @@ const EmployeeTableHead = () => {
     return (
         <thead>
             <tr>
-                {thead.map((title, id) => (
-                    <th key={ id }>{ title }</th>
-                ))}
+                { thead.map((title, id) => <th key={ id }>{ title }</th>) }
             </tr>
         </thead>
     )

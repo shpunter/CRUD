@@ -22,7 +22,7 @@ const ModalEmployeeEdit = ({ title, show, onHide, employeeId }) => {
 
     const onSave = () => {
         const draftEmployee = { 
-            id: employeeId,
+            id: 'employeeId',
             name: employeeName.current.value,
             active: employeeActive.current.checked,
             department: employeeDepartment.current.value

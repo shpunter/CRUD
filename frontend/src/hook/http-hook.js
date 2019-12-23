@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { axiosInstance } from '../axios'
 import { showError } from '../store/actions/error'
+import { hideModal } from '../store/actions/modal'
 
 export const useHttp = () => {
     const dispatch = useDispatch()
@@ -11,7 +12,9 @@ export const useHttp = () => {
             .catch(error => {
                 const message = error.response ? error.response.data.message : error.message 
 
+                dispatch(hideModal())
                 dispatch(showError(message))
+
                 throw Promise.reject(message)
             }),
         [dispatch]
