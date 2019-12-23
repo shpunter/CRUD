@@ -3,7 +3,7 @@ import { useSelector, shallowEqual } from 'react-redux'
 
 import Modal from 'react-bootstrap/Modal'
 
-const ModalEmployeeView = ({ title, show, onHide, employeeId }) => {debugger;
+const ModalEmployeeView = ({ title, show, onHide, employeeId }) => {
     const { name, active, department } = useSelector(
         ({ employees }) => employees.find(({ id }) => id === employeeId),
         shallowEqual

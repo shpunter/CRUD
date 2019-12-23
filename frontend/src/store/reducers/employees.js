@@ -24,7 +24,6 @@ export const employees = (state = init, action) => {
             return [...action.employees]
 
         case CREATE_EMPLOYEE: 
-        debugger;
             return [...state, action.employee]
         default: 
             return state

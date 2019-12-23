@@ -2,8 +2,7 @@ import { EMPLOYEE_CREATE, HIDE_MODAL, EMPLOYEE_VIEW, EMPLOYEE_EDIT } from '../ty
 
 const init = { show: false, mode: '' }
 
-export const modal = (state = init, action) => {
-    const { type, employeeId, show, title, mode } = action
+export const modal = (state = init, { type, employeeId, show, title, mode }) => {
     switch (type) {
         case EMPLOYEE_VIEW:
             return { show, title, mode, employeeId }
