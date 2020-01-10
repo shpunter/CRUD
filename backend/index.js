@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const employeeRoutes = require('./routes/employees')
+const searchRoute = require('./routes/search')
 const app = express()
 const mongoose = require('mongoose')
 
@@ -16,6 +17,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/employees', employeeRoutes)
+app.use('/search', searchRoute)
 
 app.use('/', (req, res, next) => {
     res.status(404).send({ message: 'Page note found'})

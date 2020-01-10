@@ -1,8 +1,8 @@
 refactor modal FE
 add pagination
-add search
 add sorting
 add auth and roles
 unit tests
 refactor file structure
 refactor usage of bootstrap elements
+add FE validation
