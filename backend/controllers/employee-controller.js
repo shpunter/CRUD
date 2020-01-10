@@ -1,8 +1,11 @@
 const HttpError = require('../models/HttpError')
 const Employee = require('../models/employee')
+const { check, validationResult } = require('express-validator');
 
-const deleteEmployee = (req, res, next) => {
-    const { body: { id } } = req;
+const deleteEmployee = (req, res, next) => {console.log('con')
+    if(!validationResult(req).isEmpty()) next(new HttpError('Not valid id', 422))
+
+    const { body: { id } } = req
 
     Employee.findByIdAndRemove(id)
         .then(() => res.status(202).send({ message: "Employee removed successfully" }))
@@ -16,7 +19,9 @@ const getEmployees = (req, res, next) => {
 };
 
 const updateEmployee = (req, res, next) => {
-    const { body: { id, name, active, department }} = req;
+    if(!validationResult(req).isEmpty()) next(new HttpError('Not valid data', 422))
+
+    const { body: { id, name, active, department }} = req
 
     Employee.findByIdAndUpdate(id , { name, active, department })
         .then(() => res.status(202).send({ message: 'Employee updated' }))
@@ -24,6 +29,8 @@ const updateEmployee = (req, res, next) => {
 };
 
 const createEmployee = (req, res, next) => {
+    if(!validationResult(req).isEmpty()) next(new HttpError('Not valid data', 422))
+
     const { body: { name, active, department }} = req
 
     new Employee({ name, active, department }).save()

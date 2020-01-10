@@ -8,7 +8,7 @@ const Select = React.forwardRef(({ value = '', options }, ref) => {
 
     return (
         <Form.Control
-            ref={ ref}
+            ref={ ref }
             as='select'
             defaultValue={ selectValue }
             onChange={ onChange }

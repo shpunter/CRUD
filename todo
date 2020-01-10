@@ -4,7 +4,5 @@ add search
 add sorting
 add auth and roles
 unit tests
-refactor mongoose calls (deprecated)
 refactor file structure
-add validation BE
 refactor usage of bootstrap elements
