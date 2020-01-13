@@ -18,7 +18,7 @@ export const deleteEmployee = id => ({
     id
 })
 
-export const patchEmployee = employee =>({
+export const patchEmployee = employee => ({
     type: HTTP_PATCH_EMPLOYEE,
     employee
 })

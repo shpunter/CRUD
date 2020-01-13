@@ -1,7 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const employeeRoutes = require('./routes/employees')
-const searchRoute = require('./routes/search')
 const app = express()
 const mongoose = require('mongoose')
 
@@ -12,12 +11,11 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Headers', '*')
-    res.setHeader('Access-Control-Allow-Methods', 'GET, DELETE, PATCH')
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, DELETE, PATCH')
     next()
 })
 
 app.use('/employees', employeeRoutes)
-app.use('/search', searchRoute)
 
 app.use('/', (req, res, next) => {
     res.status(404).send({ message: 'Page note found'})
@@ -29,4 +27,4 @@ app.use((error, req, res, next) => {
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(() => { app.listen(5000) })
-    .catch(() => next(new HttpError(`Can not connect to db`, 500)))
+    .catch(() => next(new HttpError('Can not connect to db', 500)))
