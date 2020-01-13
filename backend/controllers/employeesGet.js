@@ -3,6 +3,9 @@ const Employee = require('../models/employee')
 const { validationResult } = require('express-validator')
 
 const employeesGet = async (req, res, next) => {
+    if(!validationResult(req).isEmpty()) 
+        return next(new HttpError('Not valid data', 422))
+
     const  { query: { p: page = 1, docsPerPage = 3, q: filter = '' } } = req
     let employees;
     

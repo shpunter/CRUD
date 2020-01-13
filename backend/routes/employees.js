@@ -7,7 +7,11 @@ const employeeDelete = require('../controllers/employeeDelete')
 const employeesGet = require('../controllers/employeesGet')
 
 
-router.get('/', employeesGet)
+router.get('/', [
+    check('q').trim()
+        .escape(),
+    check('p').isInt()
+], employeesGet)
 
 router.delete('/', [
     check('id').not().isEmpty()
