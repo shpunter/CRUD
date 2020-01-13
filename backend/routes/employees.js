@@ -1,18 +1,19 @@
 const express = require('express')
 const { check } = require('express-validator');
 const router = express.Router()
-const { 
-    deleteEmployee, 
-    updateEmployee, 
-    getEmployees,
-    createEmployee
-} = require('../controllers/employee-controller')
+const employeeCreate = require('../controllers/employeeCreate')
+const employeeUpdate = require('../controllers/employeeUpdate')
+const employeeDelete = require('../controllers/employeeDelete')
+const employeesGet = require('../controllers/employeesGet')
 
-router.get('/', getEmployees)
+
+router.get('/', employeesGet)
+
 router.delete('/', [
     check('id').not().isEmpty()
         .isMongoId()
-], deleteEmployee)
+], employeeDelete)
+
 router.patch('/', [
     check('id').not().isEmpty()
         .isMongoId(),
@@ -24,7 +25,8 @@ router.patch('/', [
     check('department').not().isEmpty()
         .trim()
         .escape()
-], updateEmployee)
+], employeeUpdate)
+
 router.post('/', [
     check('name').not().isEmpty()
         .trim()
@@ -34,6 +36,6 @@ router.post('/', [
     check('department').not().isEmpty()
         .trim()
         .escape()
-], createEmployee)
+], employeeCreate)
 
 module.exports = router

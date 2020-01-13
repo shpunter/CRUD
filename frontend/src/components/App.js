@@ -12,7 +12,7 @@ function App() {
     <>
       <Search />
       <Switch>
-          <Route path="/page" component={ Employees } />
+          <Route path="/employees" component={ Employees } />
           <Route path="/" component={ Employees } />
       </Switch>
       <Pagination />
